@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LigneDAO extends JpaRepository<Ligne,Integer> {
+
+	Ligne findByNom(String ligne);
 }
