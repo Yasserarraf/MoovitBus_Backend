@@ -1,6 +1,7 @@
 package fstt.lsi.metier;
 
 import fstt.lsi.DAO.*;
+
 import fstt.lsi.entities.*;
 import fstt.lsi.entities.InscriptionAbonnement;
 import org.springframework.beans.factory.annotation.Autowired;
