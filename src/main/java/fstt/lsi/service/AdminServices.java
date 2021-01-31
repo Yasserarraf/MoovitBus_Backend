@@ -1,6 +1,5 @@
 package fstt.lsi.service;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,15 +52,17 @@ public class AdminServices {
 	}
 
 	public Chauffeur affectChauffeurToBus(int idChauffeur, int idBus) {
-		Optional<Chauffeur> chauffeur = chauffeurDao.findById(idChauffeur);
+		Chauffeur chauffeur = chauffeurDao.findById(idChauffeur).orElse(null);
 		
 		if(chauffeur != null) {
-			Optional<Bus> bus  = busDAO.findById(idBus);
+			// TODO fix bus entitie 
+			
+			/*Optional<Bus> bus  = busDAO.findById(idBus);
 			
 			if(bus != null) {
-				System.out.println("at this point everything is correct");
-				return null;
-			}
+				chauffeur.setBus(bus);
+				chauffeurDao.save(chauffeur);
+			}*/
 		}
 		return null;
 	}
