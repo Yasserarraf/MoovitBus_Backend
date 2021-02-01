@@ -15,8 +15,7 @@ import java.lang.reflect.GenericArrayType;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 @ToString
 public class SoldeTelephone implements Serializable {
 

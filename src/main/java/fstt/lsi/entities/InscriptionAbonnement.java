@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @ToString
+@Data   @ToString
 public class InscriptionAbonnement {
 
     @Id
@@ -45,7 +45,7 @@ public class InscriptionAbonnement {
 
 	public InscriptionAbonnement() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 

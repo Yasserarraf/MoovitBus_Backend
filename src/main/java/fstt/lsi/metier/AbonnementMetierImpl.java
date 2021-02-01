@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AbonnementMetierImpl implements AbonnementMetier{
+public class AbonnementMetierImpl implements AbonnementMetier {
     @Autowired
     AbonnementDAO ABONNEMENT_DAO;
 

@@ -15,8 +15,7 @@ import java.util.Collection;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 @ToString
 public class Station implements Serializable {
 

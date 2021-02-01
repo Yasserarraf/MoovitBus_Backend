@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Data@AllArgsConstructor@NoArgsConstructor@ToString
+@Data @ToString
 public  class InformationInscription {
     private int id_abonnement;
     private int id_ligne;

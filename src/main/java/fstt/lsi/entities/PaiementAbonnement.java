@@ -11,8 +11,7 @@ import java.util.Date;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 @ToString
 public class PaiementAbonnement implements Serializable {
     @Id
