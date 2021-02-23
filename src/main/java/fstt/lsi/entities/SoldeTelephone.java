@@ -14,10 +14,10 @@ import java.io.Serializable;
 import java.lang.reflect.GenericArrayType;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@ToString
 public class SoldeTelephone implements Serializable {
 
     @Id@GeneratedValue(strategy = GenerationType.AUTO)

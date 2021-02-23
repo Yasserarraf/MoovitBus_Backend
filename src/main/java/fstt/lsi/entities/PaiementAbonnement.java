@@ -10,10 +10,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@ToString
 public class PaiementAbonnement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

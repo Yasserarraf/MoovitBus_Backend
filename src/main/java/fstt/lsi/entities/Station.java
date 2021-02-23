@@ -14,10 +14,10 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@ToString
 public class Station implements Serializable {
 
     @Id

@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@ToString
 public class MailRequest {
 	
 	private String name;

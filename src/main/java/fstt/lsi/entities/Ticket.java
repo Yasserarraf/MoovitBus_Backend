@@ -11,10 +11,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@ToString
 @Entity
 public class Ticket implements Serializable {
     @Id

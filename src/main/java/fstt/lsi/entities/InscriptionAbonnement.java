@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @ToString
+//@Data @NoArgsConstructor @AllArgsConstructor @ToString
 public class InscriptionAbonnement {
 
     @Id
