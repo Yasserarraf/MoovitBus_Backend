@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 public  class InformationInscription {
     private int id_abonnement;
     private int id_ligne;

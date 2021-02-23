@@ -14,6 +14,7 @@ import java.util.Collection;
 
 @Entity
 
+
 public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

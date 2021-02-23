@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
+
 public class MailRequest {
 	
 	private String name;

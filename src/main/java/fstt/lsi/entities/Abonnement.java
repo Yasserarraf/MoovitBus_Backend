@@ -13,7 +13,10 @@ import java.util.Collection;
 
 @Entity
 
-public class Abonnement implements Serializable {
+
+//@Data @AllArgsConstructor @NoArgsConstructor
+public  class Abonnement implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
