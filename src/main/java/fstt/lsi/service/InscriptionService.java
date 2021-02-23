@@ -5,6 +5,8 @@ import fstt.lsi.entities.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 @Service
@@ -32,6 +34,11 @@ public class InscriptionService {
 
         return repo.findByEmailAndPassword(email, password);
 
+    }
+    
+    public List<Client> AllClients()
+    {
+    	return repo.findAll();
     }
 
 

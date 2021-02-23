@@ -2,7 +2,11 @@ package fstt.lsi.Controller;
 
 import fstt.lsi.entities.Client;
 import fstt.lsi.service.InscriptionService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +17,12 @@ public class InscriptionController {
        @Autowired
         InscriptionService inscriptionService;
 
-        @PostMapping("/registerUser")
+       @GetMapping("/getUsers")
+        public List<Client> AllClients() {
+		return inscriptionService.AllClients();
+	}
+
+		@PostMapping("/registerUser")
         public Client registerUser(@RequestBody Client client) throws Exception {
             String checkEmail = client.getEmail();
             String checkPassword = client.getPassword();
