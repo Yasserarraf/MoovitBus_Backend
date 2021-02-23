@@ -10,9 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Data
 
-@ToString
 public class PaiementAbonnement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-@Data
+
 public class Abonnement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

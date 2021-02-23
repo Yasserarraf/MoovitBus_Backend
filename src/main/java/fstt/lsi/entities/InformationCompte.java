@@ -11,9 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-@Data
 
-@ToString
 @Entity
 public class InformationCompte implements Serializable {
     @Id

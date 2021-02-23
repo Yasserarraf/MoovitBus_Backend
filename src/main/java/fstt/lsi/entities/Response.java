@@ -5,8 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Data
-@ToString
+
 public class Response {
     private String message;
     private boolean status;

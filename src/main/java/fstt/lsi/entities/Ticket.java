@@ -11,9 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-@Data
 
-@ToString
 @Entity
 public class Ticket implements Serializable {
     @Id

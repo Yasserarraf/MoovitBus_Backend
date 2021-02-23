@@ -13,8 +13,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-@Data
-@AllArgsConstructor
+
 public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -14,9 +14,7 @@ import java.io.Serializable;
 import java.lang.reflect.GenericArrayType;
 
 @Entity
-@Data
 
-@ToString
 public class SoldeTelephone implements Serializable {
 
     @Id@GeneratedValue(strategy = GenerationType.AUTO)
