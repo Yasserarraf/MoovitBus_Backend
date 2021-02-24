@@ -14,9 +14,23 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TicketDao extends JpaRepository<Ticket,Integer> {
 	
-	/*@Query("select * from Ticket where date=:x and Station__dep=:y")
+	@Query("SELECT t from Ticket t WHERE t.date=:x and t.station_dep=:y ")//  
 	public List<Ticket> findByDateandStationDep(@Param("x") Date date,@Param("y") int station);
-	*/
+	
+	@Query("SELECT t from Ticket t WHERE t.station_dep=:y ")//  
+	public List<Ticket> findByStationDep(@Param("y") int station);
+	
+	@Query("SELECT t from Ticket t WHERE t.station_dep=:y and t.date between :x1 and :x2")//  
+	public List<Ticket> findByStationDepandDate(@Param("y") int station,@Param("x1")Date date1,@Param("x2")Date date2);
+	
+	
+	
+	/*
+	 * @Query("SELECT u FROM User u WHERE u.status = :status and u.name = :name")
+	User findUserByStatusAndNameNamedParams(
+	  @Param("status") Integer status, 
+	  @Param("name") String name);*/
+	
 	//public List<Ticket> findByStation__dep(int st);
    
 	@Query("select max(id) from Ticket where id_client=:x")

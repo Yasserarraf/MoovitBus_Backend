@@ -1,6 +1,8 @@
 package fstt.lsi.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +69,10 @@ public class AdminServices {
 		return null;
 	}
 
-	
+	public List<Chauffeur> AfficherEmploye()
+	{
+		
+		return chauffeurDao.findAll();
+	}
 
 }

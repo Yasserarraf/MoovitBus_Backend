@@ -1,5 +1,6 @@
 package fstt.lsi.metier;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,18 +21,35 @@ public class StationServiceImpl implements StationServices{
 	
 
 	@Override
-	public List<Station> StationsSurchargees() {
+	public ArrayList<Station> StationsSurchargees() {
 		// TODO Auto-generated method stub
-		//List<Ticket> listTicket;
+		
+		ArrayList<Station> listStationSurcharge=new ArrayList<Station>();
 		List<Station> listStations=stationrepo.findAll();
 		for(Station st:listStations)
 		{
-		//	List<Ticket> listTicket=ticketrepo.findByDateandStationDep(new Date(), st.getId());
+
 			
-		}
-		
-		
-		return null;
+			Date date1=new Date();
+			Date date2=new Date();
+			date1.setMinutes(0);
+			date1.setSeconds(0);
+			date1.setHours(date1.getHours()-2);
+			date2.setMinutes(0);
+			date2.setSeconds(0);
+			date2.setHours(date2.getHours()+1);
+			
+			
+			List<Ticket> listTicket=ticketrepo.findByStationDepandDate(st.getId(), date1, date2);
+			
+			if(listTicket.size()>3)
+			{
+				listStationSurcharge.add(st);
+				//System.out.println("date1: "+date1);
+				//System.out.println("date2: "+date2);
+			}			
+		}				
+		return listStationSurcharge;
 	}
 
 }
