@@ -8,7 +8,7 @@ import fstt.lsi.entities.Ticket;
 import fstt.lsi.metier.TicketMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/ticket")
 public class TicketController {
