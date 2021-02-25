@@ -36,9 +36,6 @@ public class Controller {
 	CasUrgentBean CreateCasUrgent(@RequestParam("id_chauffeur")int id_chauffeur,@RequestParam("type")String type){
 	return moovitservice.signalercas(id_chauffeur, type);
 	}
-	@PostMapping(value="/DeleteCasUrgent")
-	void  CreateCasUrgent(@RequestParam("id_cas")int id_cas){
-		moovitservice.deletecas(id_cas);
-	}
+	
 	
 }

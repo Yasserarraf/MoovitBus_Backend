@@ -32,9 +32,6 @@ import fstt.lsi.entities.LigneStation;
 import fstt.lsi.entities.Station;
 
 
-
-
-
 @Service
 public class service {
 
@@ -117,12 +114,11 @@ public class service {
 		List<Ligne> l= getLigneBusBystation(stationdep.getId(),  stationdest.getId(),  direction);
 		List<LigneBusBean> ll=new ArrayList<LigneBusBean>();
 		for(Ligne lb: l) {
-			ll.add(new LigneBusBean(lb.getId(), lb.getNom(),new StationBean(stationdep.getId(),stationdep.getNom(),stationdep.getX_station(),stationdep.getY_station()),
-					new StationBean(stationdest.getId(),stationdest.getNom(),stationdest.getX_station(),stationdest.getY_station())));
+			ll.add(new LigneBusBean(lb.getId(), lb.getNom(),new StationBean(stationdep.getId(),stationdep.getNom(),stationdep.getLatitude(),stationdep.getLongitude()),
+					new StationBean(stationdest.getId(),stationdest.getNom(),stationdest.getLatitude(),stationdest.getLongitude()) , 1));
 		}
 		
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+l.size());
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+l.size());
+		
 		
 		
 		
@@ -312,14 +308,14 @@ TreeMap<Integer, List<Integer>>mm=	getLigneBusBystation2(stationdep.getId(),  st
 			lb=lbdao.findById(mm.get(i).get(0)).orElse(null);
 			stationdep = getStationByname(nomStationDepart);
 			stationdest=st.findById(mm.get(i).get(2)).orElse(null);
-			ml.add(new LigneBusBean(lb.getId(), lb.getNom(),new StationBean(stationdep.getId(),stationdep.getNom(),stationdep.getX_station(),stationdep.getY_station()),
-					new StationBean(stationdest.getId(),stationdest.getNom(),stationdest.getX_station(),stationdest.getY_station())));
+			ml.add(new LigneBusBean(lb.getId(), lb.getNom(),new StationBean(stationdep.getId(),stationdep.getNom(),stationdep.getLatitude(),stationdep.getLongitude()),
+					new StationBean(stationdest.getId(),stationdest.getNom(),stationdest.getLatitude(),stationdest.getLongitude()), 2));
 		
 			lb=lbdao.findById(mm.get(i).get(1)).orElse(null);
 			 stationdest = getStationByname(nomStationDest);
 			stationdep=st.findById(mm.get(i).get(2)).orElse(null);
-			ml.add(new LigneBusBean(lb.getId(), lb.getNom(),new StationBean(stationdep.getId(),stationdep.getNom(),stationdep.getX_station(),stationdep.getY_station()),
-					new StationBean(stationdest.getId(),stationdest.getNom(),stationdest.getX_station(),stationdest.getY_station())));
+			ml.add(new LigneBusBean(lb.getId(), lb.getNom(),new StationBean(stationdep.getId(),stationdep.getNom(),stationdep.getLatitude(),stationdep.getLongitude()),
+					new StationBean(stationdest.getId(),stationdest.getNom(),stationdest.getLatitude(),stationdest.getLongitude()) , 2));
 		
 		
 		}
@@ -346,10 +342,16 @@ TreeMap<Integer, List<Integer>>mm=	getLigneBusBystation2(stationdep.getId(),  st
 		Ligne lignebus = getLigneBusByname(nomLigneBus);
 		LigneStation LigneStation_dep = getLigneStation(stationdep.getId(), lignebus.getId());
 		LigneStation LigneStation_dest = getLigneStation(stationdest.getId(), lignebus.getId());
-		if (LigneStation_dest.getId() < LigneStation_dep.getId())
+		List<LigneStation>ls1=lignestationdao.findlistLigneStationByLigneBus(lignebus.getId());
+		 if (LigneStation_dest.getId() < LigneStation_dep.getId())
 			direction = "retour";
-		if (LigneStation_dest.getId() > LigneStation_dep.getId())
+		 if (LigneStation_dest.getId() > LigneStation_dep.getId())
 			direction = "aller";
+		 if(LigneStation_dep==ls1.get(0))
+			direction = "retour";
+		if(LigneStation_dep==ls1.get(ls1.size()-1));
+			direction = "aller";
+			
 		List<Bus> ListBus = getListBus(lignebus.getId(), direction);
 		LigneStation lsdebut;
 		if(direction.equalsIgnoreCase("aller"))
@@ -380,9 +382,10 @@ public CasUrgentBean signalercas( int id_chauffeur , String type  ) {
 		
 		Employe e = employedao.findById(id_chauffeur).orElse(null);
 	   Bus b = busdao.findById(e.getBus().getId()).orElse(null);
-		Date d = new Date();
-		DateFormat df =  new SimpleDateFormat("DD-MM-YY hh:mm:ss");
-		String s= df.format(d);
+	   
+	    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String s= df.format(new Date());
+	
 		Cas_Urgent cas = new Cas_Urgent( 0 , type , e,s ) ;
 		casurgentdao.save(cas) ;
 		BusBean bb= new BusBean(b.getId(),b.getLatitude() , b.getLongitude(), b.getDirection(),0);
@@ -394,24 +397,22 @@ public CasUrgentBean signalercas( int id_chauffeur , String type  ) {
 	public List<CasUrgentBean> getcas_urgents(){
 		List<Cas_Urgent>  cas = (List<Cas_Urgent>) casurgentdao.findAll();
 		List<CasUrgentBean> cbean =new ArrayList<CasUrgentBean>();
-		for (Cas_Urgent c: cas) {
+		 
+	    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String s= df.format(new Date());
+			for (Cas_Urgent c: cas) {
+			if(c.getDate().equalsIgnoreCase(s)){
 			Employe e = c.getEmploye();
 		  Bus b = busdao.findById(e.getBus().getId()).orElse(null);
 		  BusBean bb= new BusBean(b.getId(),b.getLatitude() , b.getLongitude(), b.getDirection(),0);
 			CasUrgentBean cub= new CasUrgentBean(c.getId(), c.getType(),bb,c.getDate());
 			 cbean.add(cub);
-		}
+		}}
 		return cbean ;	
 	}
 	
 	
-        public void deletecas (int id_cas ) {
-		
-		Cas_Urgent cas = casurgentdao.findById(id_cas).orElse(null);
-		casurgentdao.delete(cas);
-		
-		
-	}
+	
 	
 }
 

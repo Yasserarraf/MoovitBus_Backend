@@ -12,101 +12,92 @@ import javax.persistence.*;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
-
+@Table(name="station")
 public class Station implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String nom;
-    private double x_station;
-    private double y_station;
-    private String direction;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(nullable = false, unique = true )
+	private int id;
+	@Column()
+	private String nom;
+	@Column()
+	private float Latitude;
+	@Column()
+	private float longitude;
+	@Column()
+	private String direction ;
+	
+	@ManyToMany
+	@JoinTable(name = "ligne_station" , joinColumns =  @JoinColumn(name = "id_station"),
+	inverseJoinColumns = @JoinColumn(name = "id_ligne_bus") )
+	private List<Ligne> lignes ;
 
-    @ManyToMany
-    @JoinTable(name="ligne_station",joinColumns= @JoinColumn(name="id_station"),inverseJoinColumns=@JoinColumn(name="id_ligne_bus"))
-    private Collection<Ligne> lignes  ;
-
-
-    @JsonIgnore
-    public Collection<Ligne> getLignes() {
-        return lignes;
-    }
-
+	public Station(int id, String nom, float latitude, float longitude, String direction, List<Ligne> lignes) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		Latitude = latitude;
+		this.longitude = longitude;
+		this.direction = direction;
+		this.lignes = lignes;
+	}
 
 	public Station() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Station(int id, String nom, double x_station, double y_station, String direction, Collection<Ligne> lignes) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.x_station = x_station;
-		this.y_station = y_station;
-		this.direction = direction;
-		this.lignes = lignes;
-	}
-
-
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
 	public String getNom() {
 		return nom;
 	}
-
 
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
-
-	public double getX_station() {
-		return x_station;
+	public float getLatitude() {
+		return Latitude;
 	}
 
-
-	public void setX_station(double x_station) {
-		this.x_station = x_station;
+	public void setLatitude(float latitude) {
+		Latitude = latitude;
 	}
 
-
-	public double getY_station() {
-		return y_station;
+	public float getLongitude() {
+		return longitude;
 	}
 
-
-	public void setY_station(double y_station) {
-		this.y_station = y_station;
+	public void setLongitude(float longitude) {
+		this.longitude = longitude;
 	}
-
 
 	public String getDirection() {
 		return direction;
 	}
 
-
 	public void setDirection(String direction) {
 		this.direction = direction;
 	}
 
-	@JsonSetter
-	public void setLignes(Collection<Ligne> lignes) {
+	public List<Ligne> getLignes() {
+		return lignes;
+	}
+
+	public void setLignes(List<Ligne> lignes) {
 		this.lignes = lignes;
 	}
 
-    
-
+	
 }
