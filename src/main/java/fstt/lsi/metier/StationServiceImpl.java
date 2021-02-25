@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fstt.lsi.DAO.StationDAO;
 import fstt.lsi.DAO.TicketDao;
+import fstt.lsi.bean.StationBean2;
 import fstt.lsi.entities.Station;
 import fstt.lsi.entities.Ticket;
 @Service
@@ -34,7 +35,7 @@ public class StationServiceImpl implements StationServices{
 			Date date2=new Date();
 			date1.setMinutes(0);
 			date1.setSeconds(0);
-			date1.setHours(date1.getHours()-2);
+			date1.setHours(date1.getHours()-4);
 			date2.setMinutes(0);
 			date2.setSeconds(0);
 			date2.setHours(date2.getHours()+1);
@@ -50,6 +51,27 @@ public class StationServiceImpl implements StationServices{
 			}			
 		}				
 		return listStationSurcharge;
+	}
+
+
+	@Override
+	public ArrayList<StationBean2> AllStations() {
+		// TODO Auto-generated method stub
+		
+		ArrayList<StationBean2> stationBean=new ArrayList<StationBean2>();
+		List<Station> stations=stationrepo.findAll();
+		
+		for(Station st:stations)
+		{
+			StationBean2 newStationBean=new StationBean2();
+			newStationBean.setId(st.getId());
+			newStationBean.setNom(st.getNom());
+			newStationBean.setX_station(st.getLatitude());
+			newStationBean.setY_station(st.getLongitude());
+			newStationBean.setDirection(st.getDirection());
+			stationBean.add(newStationBean);
+		}
+		return stationBean;
 	}
 
 }

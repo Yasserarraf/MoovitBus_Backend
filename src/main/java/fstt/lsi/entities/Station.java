@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.persistence.GenerationType;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -24,9 +24,9 @@ public class Station implements Serializable {
 	private int id;
 	@Column()
 	private String nom;
-	@Column()
+	@Column(name="x_station")
 	private float Latitude;
-	@Column()
+	@Column(name="y_station")
 	private float longitude;
 	@Column()
 	private String direction ;
@@ -90,11 +90,11 @@ public class Station implements Serializable {
 	public void setDirection(String direction) {
 		this.direction = direction;
 	}
-
+	@JsonIgnore
 	public List<Ligne> getLignes() {
 		return lignes;
 	}
-
+@JsonSetter
 	public void setLignes(List<Ligne> lignes) {
 		this.lignes = lignes;
 	}
