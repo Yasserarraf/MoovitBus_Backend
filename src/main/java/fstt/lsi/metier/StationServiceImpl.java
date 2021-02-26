@@ -98,6 +98,7 @@ public class StationServiceImpl implements StationServices{
 			newStationBean.setDirection(st.getDirection());
 			stationBean.add(newStationBean);
 		}
+		System.out.println(stations);
 		return stationBean;
 	}
 

@@ -32,7 +32,7 @@ public class Controller {
 	List<CasUrgentBean>  getPostCasUrgents(){
 	return moovitservice.getcas_urgents();
 	}
-	@PostMapping(value="/SignalerCasUrgent")
+	@GetMapping(value="/SignalerCasUrgent")
 	CasUrgentBean CreateCasUrgent(@RequestParam("id_chauffeur")int id_chauffeur,@RequestParam("type")String type){
 	return moovitservice.signalercas(id_chauffeur, type);
 	}

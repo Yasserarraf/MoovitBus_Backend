@@ -53,7 +53,7 @@ public class InscriptionAbonnementMetierImpl implements InscriptionAbonnementMet
         String code="M"+number+"42";
         InscriptionAbonnement inscriptionAbonnement=new InscriptionAbonnement(code,clt,abonnement,ligne);
         inscriptionAbonnement.setCodeAbonne(code);
-
+        System.out.println(clt);
         // envoie du codeAbonné dans le mail du client
           sendNotification(clt,code);
 
