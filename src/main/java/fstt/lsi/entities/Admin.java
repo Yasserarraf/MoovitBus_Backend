@@ -14,7 +14,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@AllArgsConstructor
+
 @Table(name="employe")
 public class Admin implements Serializable {
 	@Id

@@ -19,12 +19,12 @@ public class Controller {
 	@Autowired
 	private service moovitservice;
 
-	@PostMapping(value="/meilleurVoyage")
+	@GetMapping(value="/meilleurVoyage")
 	public List<LigneBusBean>getLigneBus(@RequestParam("station_Dep")String station_Dep,@RequestParam("station_Dist") String station_Dist){
 	return moovitservice.getLigneBus1(station_Dep, station_Dist);
 	}
 	
-	@PostMapping(value="/Postempsrestantbus")
+	@GetMapping(value="/Postempsrestantbus")
 	 List<BusBean>  getPostempsrestantBus(@RequestParam("station_Dep")String station_Dep,@RequestParam("station_Dist") String station_Dist,@RequestParam("nom_LigneBus") String nom_LigneBus){
 	return moovitservice.getPostempsrestantBus(station_Dep, station_Dist,  nom_LigneBus);
 	}

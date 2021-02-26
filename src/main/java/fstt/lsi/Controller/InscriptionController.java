@@ -23,6 +23,7 @@ public class InscriptionController {
 		return inscriptionService.AllClients();
 	}
 
+	    @CrossOrigin
 		@PostMapping("/registerUser")
         public Client registerUser(@RequestBody Client client) throws Exception {
             String checkEmail = client.getEmail();
