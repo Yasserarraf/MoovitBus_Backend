@@ -10,4 +10,6 @@ public interface ChauffeurDAO extends JpaRepository<Chauffeur, Integer> {
 
 	Chauffeur findByEmail(String email);
 
+	Chauffeur findByEmailAndPasswordAndRole(String email, String password, String role);
+
 }
