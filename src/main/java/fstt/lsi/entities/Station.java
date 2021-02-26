@@ -24,9 +24,9 @@ public class Station implements Serializable {
 	private int id;
 	@Column()
 	private String nom;
-	@Column(name="x_station")
+	@Column()
 	private float Latitude;
-	@Column(name="y_station")
+	@Column()
 	private float longitude;
 	@Column()
 	private String direction ;
