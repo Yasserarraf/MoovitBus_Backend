@@ -23,7 +23,11 @@ public interface TicketDao extends JpaRepository<Ticket,Integer> {
 	@Query("SELECT t from Ticket t WHERE t.station_dep=:y and t.date between :x1 and :x2")//  
 	public List<Ticket> findByStationDepandDate(@Param("y") int station,@Param("x1")Date date1,@Param("x2")Date date2);
 	
+	@Query("SELECT t from Ticket t WHERE t.station_dep=:y and t.id_ligne_bus=:z and t.date between :x1 and :x2")//  
+	public List<Ticket> findByStationDepandDateandLigneBus(@Param("y") int station,@Param("z")int ligneBus,@Param("x1")Date date1,@Param("x2")Date date2);
 	
+	
+	//id_ligne_bus
 	
 	/*
 	 * @Query("SELECT u FROM User u WHERE u.status = :status and u.name = :name")

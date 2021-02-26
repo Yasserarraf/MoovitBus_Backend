@@ -5,6 +5,7 @@ import fstt.lsi.DAO.LigneDAO;
 
 import fstt.lsi.DAO.StationDAO;
 import fstt.lsi.bean.StationBean2;
+import fstt.lsi.bean.StationSurcharge;
 import fstt.lsi.entities.Ligne;
 import fstt.lsi.entities.Station;
 import fstt.lsi.metier.StationServices;
@@ -31,17 +32,25 @@ public class StationController {
        
        @Autowired
        private StationServices stationservices;
-       @GetMapping("/All")  
+       
+       @GetMapping("/surcharge")
+       public List<StationSurcharge> StationsSurchargees() {
+		return stationservices.StationsSurchargees();
+	}
+
+
+
+	@GetMapping("/All")  
        public ArrayList<StationBean2> AllStations() {
 		return stationservices.AllStations();
 	}
 
 
 
-	@GetMapping("/surcharge")
+	/*@GetMapping("/surcharge")
        public List<Station> StationsSurchargees() {
 		return stationservices.StationsSurchargees();
-	}
+	}*/
 
 
 	@GetMapping("/{id_ligne}")

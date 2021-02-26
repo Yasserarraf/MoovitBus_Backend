@@ -7,9 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fstt.lsi.DAO.LigneDAO;
 import fstt.lsi.DAO.StationDAO;
 import fstt.lsi.DAO.TicketDao;
 import fstt.lsi.bean.StationBean2;
+import fstt.lsi.bean.StationSurcharge;
+import fstt.lsi.entities.Ligne;
 import fstt.lsi.entities.Station;
 import fstt.lsi.entities.Ticket;
 @Service
@@ -20,12 +23,17 @@ public class StationServiceImpl implements StationServices{
 	@Autowired
 	private TicketDao ticketrepo;
 	
+	@Autowired
+	private LigneDAO lignerepo;
+	
 
 	@Override
-	public ArrayList<Station> StationsSurchargees() {
+	public ArrayList<StationSurcharge> StationsSurchargees() {
 		// TODO Auto-generated method stub
 		
-		ArrayList<Station> listStationSurcharge=new ArrayList<Station>();
+		//ArrayList<Station> listStationSurcharge=new ArrayList<Station>();
+		
+		ArrayList<StationSurcharge> listStationSurcharge=new ArrayList<StationSurcharge>();
 		List<Station> listStations=stationrepo.findAll();
 		for(Station st:listStations)
 		{
@@ -40,7 +48,26 @@ public class StationServiceImpl implements StationServices{
 			date2.setSeconds(0);
 			date2.setHours(date2.getHours()+1);
 			
+			List<Ligne> listLigne=lignerepo.findAll();
+			for(Ligne l:listLigne)
+			{
+
+				//List<Ticket> listTicket=ticketrepo.findByStationDepandDate(st.getId(), date1, date2);
+				List<Ticket> listTicket=ticketrepo.findByStationDepandDateandLigneBus(st.getId(), l.getId(), date1, date2);
+				if(listTicket.size()>3)
+				{
+					StationSurcharge stationsurcharge=new StationSurcharge();
+					stationsurcharge.setNom(st.getNom());
+					stationsurcharge.setLigne(l.getNom());
+					stationsurcharge.setDirection(st.getDirection());
+					
+					listStationSurcharge.add(stationsurcharge);
+					//System.out.println("date1: "+date1);
+					//System.out.println("date2: "+date2);
+				}	
+			}
 			
+			/*
 			List<Ticket> listTicket=ticketrepo.findByStationDepandDate(st.getId(), date1, date2);
 			
 			if(listTicket.size()>3)
@@ -48,7 +75,7 @@ public class StationServiceImpl implements StationServices{
 				listStationSurcharge.add(st);
 				//System.out.println("date1: "+date1);
 				//System.out.println("date2: "+date2);
-			}			
+			}	*/		
 		}				
 		return listStationSurcharge;
 	}
