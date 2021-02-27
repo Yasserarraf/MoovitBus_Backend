@@ -65,6 +65,12 @@ public class AdminController {
 		return null;
 	}
 	
+	@PostMapping(value="/add/chauffeur")
+	public Chauffeur addChauffeur(@RequestBody Chauffeur chauffeur){
+		chauffeur.setRole("chauffeur");
+		return adminServices.addChauffeur(chauffeur);
+	}
+	
 	@PostMapping(value="/affecter/chauffeur-bus")
 	public Chauffeur affectChauffeurToBus(@RequestBody Object object){
 		
