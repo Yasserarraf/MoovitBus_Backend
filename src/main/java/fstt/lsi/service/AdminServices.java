@@ -74,5 +74,15 @@ public class AdminServices {
 		
 		return chauffeurDao.findAll();
 	}
+	
+	public Chauffeur addChauffeur(Chauffeur chauffeur) {
+		// TODO Auto-generated method stub
+		if(chauffeur.getEmail() != null && chauffeurDao.findByEmail(chauffeur.getEmail()) == null) {
+
+			return chauffeurDao.save(chauffeur);
+		}
+
+		return null;
+	}
 
 }
